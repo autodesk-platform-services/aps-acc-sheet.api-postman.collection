@@ -1,18 +1,18 @@
 # Postman Collection for Sheets API of Autodesk Construction Cloud(ACC) 
 
 [![Postman](https://img.shields.io/badge/Postman-v7-orange.svg)](https://www.getpostman.com/)
-[![Sheet API](https://img.shields.io/badge/ACC%20Sheet%20API-v1-yellowgreen)](https://forge.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
+[![Sheet API](https://img.shields.io/badge/ACC%20Sheet%20API-v1-yellowgreen)](https://aps.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
 
 ![Beginner](https://img.shields.io/badge/Level-Beginner-green.svg)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 ## Description 
 
-This repository provides a postman collection for **Sheets API**. Sheets is a feature under Autodesk Build. Please check [Field Guide](https://forge.autodesk.com/en/docs/acc/v1/overview/field-guide/sheets/) for more details. The API supports both 2-legged and 3-legged token .
+This repository provides a postman collection for **Sheets API**. Sheets is a feature under Autodesk Build. Please check [Field Guide](https://aps.autodesk.com/en/docs/acc/v1/overview/field-guide/sheets/) for more details. The API supports both 2-legged and 3-legged token .
 
 ## What's Postman?
 
-Postman is a popular tool that provides an easy-to-use interface to send HTTP requests. Postman is able to parse the responses that Forge sends you and save response parameter values to variables. These parameters can then be reused in subsequent requests through these variables. The Postman collections in this repository use this ability to provide pre-populated HTTP requests to help you follow the tutorial workflow with minimal effort. You can also modify the requests and experiment without having to write a single line of code. 
+Postman is a popular tool that provides an easy-to-use interface to send HTTP requests. Postman is able to parse the responses that APS sends you and save response parameter values to variables. These parameters can then be reused in subsequent requests through these variables. The Postman collections in this repository use this ability to provide pre-populated HTTP requests to help you follow the tutorial workflow with minimal effort. You can also modify the requests and experiment without having to write a single line of code. 
 
 - You can learn how to install and use Postman from [here](https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates).
 
@@ -21,11 +21,11 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
 ## Setup
 
-1.  **Forge Account**: Learn how to create a Forge Account, activate the subscription and create an app by [this tutorial](http://learnforge.autodesk.io/#/account/). Get Forge _client id_, _client secret_ and  _callback url_. Please register Forge app with the _callback url_ as 
+1.  **APS Account**: Learn how to create a APS Account, activate the subscription and create an app by [this tutorial](http://learnaps.autodesk.io/#/account/). Get APS _client id_, _client secret_ and  _callback url_. Please register APS app with the _callback url_ as 
 
     ```https://www.getpostman.com/oauth2/callback```
 
-2. **ACC Account and project**: must be Account Admin to add the app integration. [Learn about provisioning](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). 
+2. **ACC Account and project**: must be Account Admin to add the app integration. [Learn about provisioning](https://aps.autodesk.com/blog/bim-360-docs-provisioning-aps-apps). 
 
 3. Follow [product help](https://learnacc.autodesk.com/page/autodesk-docs) to create one version set and upload some PDFs to Sheets.
 
@@ -33,7 +33,7 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
 5.  Clone this repository or download it. It's recommended to install [GitHub Desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
-    ```git clone https://github.com/autodesk-forge/forge-acc-sheet.api-postman.collection```
+    ```git clone https://github.com/autodesk-platform-services/aps-acc-sheet.api-postman.collection```
 
 6. Import the collection and environment files to Postman
 
@@ -72,12 +72,12 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
 1. Assume the steps of **Setup** have been performed. The access token is ready.
 
-2. Play the scripts. Try to change some parameters or body with more scenarios. Please check [Sheets API Reference](https://forge.autodesk.com/en/docs/bim360/v1/reference/http/data-connector-requests-POST/) for more details
+2. Play the scripts. Try to change some parameters or body with more scenarios. Please check [Sheets API Reference](https://aps.autodesk.com/en/docs/bim360/v1/reference/http/data-connector-requests-POST/) for more details
    <p align="center"><img src="./help/collection.png" width="400" ></p>  
 
 ## Tutorial Test
 
-### [Upload Files to ACC Sheets](https://forge.autodesk.com/en/docs/bim360/v1/tutorials/data-connector/)
+### [Upload Files to ACC Sheets](https://aps.autodesk.com/en/docs/bim360/v1/tutorials/data-connector/)
 
    This tutorial demos the whole workflow that uploads sheets till publishing. Please prepare some PDF files (either single page or multiple pages)
 
@@ -87,7 +87,7 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
    - Step 4: use the signed url in Step 3 to upload the binary file (PDF)
    - Step 5: call [Data Management API]() to complete the upload.
    If you want to upload more PDFs, repeat Step 2 and Step 4
-   - Step 6: create a new upload of Sheet with all the storage urns of the PDF. At backend of Forge, it will extract each pdf, split them to pages. Each page will be created as one Sheet.  
+   - Step 6: create a new upload of Sheet with all the storage urns of the PDF. At backend of APS, it will extract each pdf, split them to pages. Each page will be created as one Sheet.  
    - Step 7: check status of the upload. If it shows IN_REVIEW, it means the sheets are extracted successfully, and ready for review.
    - Step 8: get ids of the review sheets.
    - Step 9: get thumbnails of the review sheets as a reference when the user reviews the sheet
@@ -102,14 +102,14 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
  
 ## Further Reading
 **Document**
-- [Sheets API Field Guid](https://forge.autodesk.com/en/docs/acc/v1/overview/field-guide/sheets/)
-- [Sheets API Reference](https://forge.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
+- [Sheets API Field Guid](https://aps.autodesk.com/en/docs/acc/v1/overview/field-guide/sheets/)
+- [Sheets API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
 
 **Tutorials**:
-- [Upload Files to ACC Sheets](https://forge.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
+- [Upload Files to ACC Sheets](https://aps.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
 
 **Blogs**:
-- [Forge Blog](https://forge.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
+- [APS Blog](https://aps.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
 - [Field of View](https://fieldofviewblog.wordpress.com/), a BIM focused blog
 
 ## License
@@ -118,7 +118,7 @@ This sample is licensed under the terms of the [MIT License](http://opensource.o
 
 ## Written by
 
-Xiaodong Liang [@coldwood](https://twitter.com/coldwood), [Forge Partner Development](http://forge.autodesk.com)
+Xiaodong Liang [@coldwood](https://twitter.com/coldwood), Developer Support and Advocacy 
 
 ## Change Log
   - 10/08/2022: first release
