@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0dbf5b47-0844-428b-a2e2-f7010ceee3d1",
+		"_postman_id": "acd9bc60-fc89-46a5-b10a-efbd354ad91e",
 		"name": "ACC Sheet API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29581881"
+		"_exporter_id": "33616642"
 	},
 	"item": [
 		{
@@ -1170,6 +1170,118 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Export",
+					"item": [
+						{
+							"name": "POST create export job",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Create sheets export job, Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});",
+											" ",
+											"pm.test(\"get job id: \", function () {",
+											"    var body = JSON.parse(responseBody);",
+											"    pm.environment.set(\"export_job_id\", body.id); ",
+											"    ",
+											"});",
+											"",
+											"     "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sheets\": [\n        \"{{first_sheet_id}}\",  \n        \"{{second_sheet_id}}\"  \n    ],\n    \"options\": {\n        \"standardMarkups\": {\n            \"includePublishedMarkups\": true,\n            \"includeUnpublishedMarkups\": true,\n            \"includeMarkupLinks\": true\n        },\n        \"issueMarkups\": {\n            \"includePublishedMarkups\": true,\n            \"includeUnpublishedMarkups\": true\n        },\n        \"photoMarkups\": {\n            \"includePublishedMarkups\": true,\n            \"includeUnpublishedMarkups\": true\n        },\n        \"outputFileName\": \"Sheets_export_result_name\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/exports",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"exports"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": "{{project_id_without_b}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET export job result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Get sheets export job result, Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"     "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/exports/:exportId",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"exports",
+										":exportId"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": "{{project_id_without_b}}"
+										},
+										{
+											"key": "exportId",
+											"value": "{{export_job_id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1922,6 +2034,213 @@
 											"key": "projectId",
 											"value": "{{project_id_without_b}}"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Export ACC Sheets",
+					"item": [
+						{
+							"name": "Step 1: Get sheets",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Get sheets collection, Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											" ",
+											"pm.test(\"get two sheets id: \", function () {",
+											"    var body = JSON.parse(responseBody);",
+											"    if(body.results && body.results.length>1){",
+											"        pm.environment.set(\"first_sheet_id\", body.results[0].id); ",
+											"        pm.environment.set(\"second_sheet_id\", body.results[1].id); ",
+											"    }",
+											"",
+											"    ",
+											"});",
+											"",
+											"     "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/sheets",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"sheets"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": "{{project_id_without_b}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2: Create an export job",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Create sheets export job, Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});",
+											" ",
+											"pm.test(\"get job id: \", function () {",
+											"    var body = JSON.parse(responseBody);",
+											"    pm.environment.set(\"export_job_id\", body.id); ",
+											"    ",
+											"});",
+											"",
+											"     "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sheets\": [\n        \"{{first_sheet_id}}\",  \n        \"{{second_sheet_id}}\"  \n    ],\n    \"options\": {\n        \"standardMarkups\": {\n            \"includePublishedMarkups\": true,\n            \"includeUnpublishedMarkups\": true,\n            \"includeMarkupLinks\": true\n        },\n        \"issueMarkups\": {\n            \"includePublishedMarkups\": true,\n            \"includeUnpublishedMarkups\": true\n        },\n        \"photoMarkups\": {\n            \"includePublishedMarkups\": true,\n            \"includeUnpublishedMarkups\": true\n        },\n        \"outputFileName\": \"Sheets_export_result_name\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/exports",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"exports"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": "{{project_id_without_b}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 3: Get export job result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Get sheets export job result, Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Get downloadable link: \", function () {",
+											"    var body = pm.response.json();",
+											"    var isComplete = body.status === 'successful' && body.result;",
+											"    if (isComplete) {",
+											"        pm.environment.set(\"export_downloadable_link\", body.result.output.signedUrl); ",
+											"    } else {",
+											"        // polling get result ",
+											"        var projectId = pm.environment.get(\"project_id_without_b\");",
+											"        var exportId = pm.environment.get(\"export_job_id\");",
+											"        var domain = pm.environment.get(\"base_domain\")",
+											"        pm.sendRequest(domain + \"/construction/sheets/v1/projects/\" + projectId + \"/exports/\" + exportId);",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/exports/:exportId",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"exports",
+										":exportId"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": ""
+										},
+										{
+											"key": "exportId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 4: Download the result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Export downloadable link Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{export_downloadable_link}}",
+									"host": [
+										"{{export_downloadable_link}}"
 									]
 								}
 							},
