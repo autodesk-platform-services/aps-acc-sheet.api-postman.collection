@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "acd9bc60-fc89-46a5-b10a-efbd354ad91e",
-		"name": "ACC Sheet API",
+		"_postman_id": "7d25cc78-2889-47a2-b574-4fb72211b660",
+		"name": "ACC Sheet API Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33616642"
+		"_exporter_id": "1440859"
 	},
 	"item": [
 		{
@@ -35,7 +35,8 @@
 											"",
 											"     "
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -100,6 +101,11 @@
 											"key": "isDeleted",
 											"value": "true",
 											"disabled": true
+										},
+										{
+											"key": "collectionId",
+											"value": "<collection id or *>",
+											"disabled": true
 										}
 									],
 									"variable": [
@@ -124,7 +130,8 @@
 											"});",
 											"  "
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -379,7 +386,8 @@
 											"",
 											"     "
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -410,6 +418,11 @@
 											"key": "offset",
 											"value": "5",
 											"description": "<input a offset in 2-200>",
+											"disabled": true
+										},
+										{
+											"key": "collectionId",
+											"value": "<collection id or *>",
 											"disabled": true
 										}
 									],
@@ -1282,6 +1295,112 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Collection",
+					"item": [
+						{
+							"name": "Get Collections",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Get collections, Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"  ",
+											" ",
+											"pm.test(\"get one collection id: \", function () {",
+											"    var body = JSON.parse(responseBody);",
+											"    if(body.results && body.results.length>1){",
+											"        pm.environment.set(\"collectionId\", body.results[0].id);  ",
+											"    }",
+											"",
+											"    ",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/collections",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"collections"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": "{{project_id_without_b}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Collection",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Get one collection, Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"  "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_domain}}/construction/sheets/v1/projects/:projectId/collections/:collectionId",
+									"host": [
+										"{{base_domain}}"
+									],
+									"path": [
+										"construction",
+										"sheets",
+										"v1",
+										"projects",
+										":projectId",
+										"collections",
+										":collectionId"
+									],
+									"variable": [
+										{
+											"key": "projectId",
+											"value": "{{project_id_without_b}}"
+										},
+										{
+											"key": "collectionId",
+											"value": "{{collectionId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -2087,6 +2206,13 @@
 										"projects",
 										":projectId",
 										"sheets"
+									],
+									"query": [
+										{
+											"key": "collectionId",
+											"value": "<collection id or *>",
+											"disabled": true
+										}
 									],
 									"variable": [
 										{
