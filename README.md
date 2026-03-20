@@ -1,14 +1,14 @@
-# Postman Collection for Sheets API of Autodesk Construction Cloud(ACC) 
+# Postman Collection for Autodesk Forma Sheets API 
 
 [![Postman](https://img.shields.io/badge/Postman-v7-orange.svg)](https://www.getpostman.com/)
-[![Sheet API](https://img.shields.io/badge/ACC%20Sheet%20API-v1-yellowgreen)](https://aps.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
+[![Sheet API](https://img.shields.io/badge/Forma%20Sheet%20API-v1-yellowgreen)](https://aps.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
 
 ![Beginner](https://img.shields.io/badge/Level-Beginner-green.svg)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 ## Description 
 
-This repository provides a postman collection for **Sheets API**. Sheets is a feature under Autodesk Build. Please check [Field Guide](https://aps.autodesk.com/en/docs/acc/v1/overview/field-guide/sheets/) for more details. The API supports both 2-legged and 3-legged token .
+This repository provides a postman collection for **Sheets API**. Sheets is a feature under Autodesk Forma Build. Please check [Field Guide](https://aps.autodesk.com/en/docs/acc/v1/overview/field-guide/sheets/) for more details. The API supports both 2-legged and 3-legged token .
 
 ## What's Postman?
 
@@ -25,11 +25,11 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
     ```https://www.getpostman.com/oauth2/callback```
 
-2. **ACC Account and project**: must be Account Admin to add the app integration. [Learn about provisioning](https://aps.autodesk.com/blog/bim-360-docs-provisioning-aps-apps). 
+2. **Autedsk Forma Account and project**: must be Account Admin to add the app integration. [Learn about provisioning](https://aps.autodesk.com/blog/bim-360-docs-provisioning-aps-apps). 
 
 3. Follow [product help](https://learnacc.autodesk.com/page/autodesk-docs) to create one version set and upload some PDFs to Sheets.
 
-4. Get ACC project id (hub id without b.) by API , or copy from browser address of ACC UI. 
+4. Get Forma hub id (hub id without b.) by API , or copy from browser address of Forma UI. 
 
 5.  Clone this repository or download it. It's recommended to install [GitHub Desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
@@ -77,7 +77,7 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
 ## Tutorial Test
 
-### [Upload Files to ACC Sheets](https://aps.autodesk.com/en/docs/bim360/v1/tutorials/data-connector/)
+### [Upload Files to Forma Sheets](https://aps.autodesk.com/en/docs/bim360/v1/tutorials/data-connector/)
 
    This tutorial demos the whole workflow that uploads sheets till publishing. Please prepare some PDF files (either single page or multiple pages)
 
@@ -97,7 +97,7 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 
 ## Known Issues and Limitations
 1. currently, API does not support extract and split Revit model
-2. currently, API does not support to import PDFs from Files module of ACC project. you must upload PDFs from your local (server/other cloud storage).
+2. currently, API does not support to import PDFs from Files module of Forma project. you must upload PDFs from your local (server/other cloud storage).
  
  
 ## Further Reading
@@ -106,7 +106,7 @@ Postman is a popular tool that provides an easy-to-use interface to send HTTP re
 - [Sheets API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/sheets-sheets-GET/)
 
 **Tutorials**:
-- [Upload Files to ACC Sheets](https://aps.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
+- [Upload Files to Forma Sheets](https://aps.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
 
 **Blogs**:
 - [APS Blog](https://aps.autodesk.com/en/docs/acc/v1/tutorials/sheets/upload-sheets/)
@@ -122,3 +122,4 @@ Xiaodong Liang [@coldwood](https://twitter.com/coldwood), Developer Support and 
 
 ## Change Log
   - 10/08/2022: first release
+  - 03/24/2026: ACC to Forma Rebrand
